@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- FONT AWESOME -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+	<!-- FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Raleway:300,400|Roboto:300,400" rel="stylesheet">
+
+	<!-- STYLES -->
+	<link rel="stylesheet" type="text/css" href="./public/css/styles.css">
+
+	<!-- SCRIPTS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
+	<!-- TITLE -->
+	<title>MAFIA</title>
+</head>
+<body>
+	<div id="container" class="noselect">
+		<div id="menu-container">
+			<h1>MAFIA</h1>
+			<h3>Created By <a href="https://hayden.sh" tabindex="-1">Hayden Woods</a> © 2018</h3>
+			<h4 id="error"></h4>
+			
+			<div id="menu" class="screen">
+				<form id="form-menu">
+					<input type="text" id="input-username" class="input" autocomplete="off" placeholder="Username..." spellcheck="false">
+					<input type="text" id="input-room" class="input" autocomplete="off" placeholder="Room..." spellcheck="false">
+					<div class="button-container">
+						<button id="button-create" class="button">Create</button>
+						<button id="button-join" class="button">Join</button>
+					</div>
+					<div class="clearfix"></div>
+				</form>
+			</div>
+			<div id="room" class="screen">
+				
+			</div>
+		</div>
+		<div id="game-container">
+			
+		</div>
+	</div>
+	<script src="./public/js/client.js"></script>
+</body>
+</html>
