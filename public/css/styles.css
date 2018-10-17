@@ -152,6 +152,7 @@ a {
 	font-family: "Raleway", sans-serif;
 	color: var(--accent-color);
 	padding-top: 15px;
+	padding-bottom: 15px;
 	opacity: 0.9;
 	font-weight: 400;
 	text-align: center;
@@ -160,7 +161,6 @@ a {
 #form-menu {
 	width: 90%;
 	margin: 0 auto;
-	padding-top: 25px;
 }
 
 #form-menu .input {
@@ -171,16 +171,16 @@ a {
 	display: block;
 	margin-top: 10px;
 	background: none;
-	border: 1px solid var(--secondary-color);
+	border: 1px solid var(--primary-color);
 	opacity: 0.6;
-	color: var(--title-color);
+	color: var(--primary-color);
 	font-family: "Roboto", sans-serif;
 }
 #form-menu .input:first-child {
 	margin-top: 0px;
 }
 #form-menu .input:focus {
-	opacity: 1;
+	opacity: 0.9;
 }
 #form-menu .input::selection {
 	background: var(--accent-color);
@@ -198,14 +198,14 @@ a {
 	background: none;
 	display: inline-block;
 	float: left;
-	opacity: 0.9;
+	opacity: 0.6;
 	cursor: pointer;
 	color: var(--primary-color);
-	border: var(--secondary-color) solid 1px;
+	border: var(--primary-color) solid 1px;
 	text-transform: uppercase;
 }
 .button-container .button:hover {
-	opacity: 1;
+	opacity: 0.9;
 }
 .button-container .button:first-child {
 	margin-right: 10px;
@@ -259,3 +259,42 @@ a {
 	padding-right: 6px;
 	vertical-align: middle;
 }
+
+#game #info-button {
+	cursor: pointer;
+	padding-bottom: 15px;
+}
+
+#game #info-list {
+	width: 100%;
+}
+
+#game #info-list .info-item {
+	text-align: center;
+	padding-bottom: 5px;
+}
+
+#game #info-list .info-item .key {
+	font-size: 20px;
+	font-family: "Roboto", sans-serif;
+	font-weight: 300;
+	text-transform: uppercase;
+	display: inline;
+}
+
+#game #info-list .info-item .value {
+	font-size: 20px;
+	font-family: "Roboto", sans-serif;
+	font-weight: 400;
+	display: inline;
+}
+
+
+
+
+
+
+
+
+
+

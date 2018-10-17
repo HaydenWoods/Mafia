@@ -23,10 +23,22 @@ class User {
 
 class Player {
 	constructor() {
+		this.username = null;
 		this.role = null;
 		this.alive = null;
 	}
 }
+
+
+/*
+  _____   ____   ____  __  __ 
+ |  __ \ / __ \ / __ \|  \/  |
+ | |__) | |  | | |  | | \  / |
+ |  _  /| |  | | |  | | |\/| |
+ | | \ \| |__| | |__| | |  | |
+ |_|  \_\\____/ \____/|_|  |_|
+                              
+*/
 
 var rooms = [];
 class Room {
@@ -35,18 +47,9 @@ class Room {
 		this.users = [];
 		this.admin = null;
 		this.isPlaying = null;
-		this.game = null;
 	}
 }
 
-class Game {
-	constructor() {
-		this.mafia = [];
-		this.detectives = [];
-		this.doctors = [];
-		this.civilians = [];
-	}
-}
 
 /*
   ________   _______  _____  ______  _____ _____ 
@@ -112,6 +115,8 @@ io.sockets.on("connection", function(socket) {
 
 	socket.on("createRoom", function(username, roomID) {
 		if (room == null) {
+			console.log("create room");
+
 			var err = null;
 
 			if (username.length <= 0) {
@@ -165,6 +170,8 @@ io.sockets.on("connection", function(socket) {
 
 	socket.on("joinRoom", function(username, roomID) {
 		if (room == null) {
+			console.log("join room");
+
 			var err = null;
 
 			if (username.length <= 0) {
@@ -200,7 +207,7 @@ io.sockets.on("connection", function(socket) {
 				user.username = username;
 				room.users.push(user);
 
-				socket.emit("success", "joinRoom", username);
+				socket.emit("success", "joinRoom");
 				io.to(room.id).emit("setupRoom", room.id, room.admin.id);
 				io.to(room.id).emit("connectedPlayers", room.users, room.admin.id);
 
@@ -223,6 +230,8 @@ io.sockets.on("connection", function(socket) {
 
 	function leaveRoom(user, room) {
 		if (room != null) {
+			console.log("leave room");
+
 			socket.leave(room.id);
 			user.player = null;
 
@@ -270,11 +279,34 @@ io.sockets.on("connection", function(socket) {
 
 	socket.on("startRoom", function() {
 		if (room != null) {
-			if (user.id == room.admin.id) {
+			console.log("start room");
+
+			var err = null;
+
+			if (user.id != room.admin.id) {
+				err = "You are not the admin!";
+			}
+			// if (room.users.length < 4) {
+			// 	err = "Four people minimum to start!";
+			// }
+
+			if (err == null) {
 				room.isPlaying = true;
-				room.game = new Game();
 
+				for (var i = 0; i < room.users.length; i++) {
+					var player = new Player() 
 
+					player.username = room.users[i].username;
+					player.role = "Gay";
+					player.alive = true;
+
+					room.users[i].player = player;
+				}
+
+				socket.emit("success", "startRoom");
+				socket.emit("setupUserInfo", user);
+			} else {	
+				socket.emit("err", err);
 			}
 		}
 	});

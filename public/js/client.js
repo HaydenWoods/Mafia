@@ -44,6 +44,10 @@ $(document).ready(function() {
 		event.preventDefault();
 	});
 
+	$("#info-button").click(function(event) {
+		$("#info-list").slideToggle();
+	});
+
 /*
    _____  ____   _____ _  ________ _______ 
   / ____|/ __ \ / ____| |/ /  ____|__   __|
@@ -60,7 +64,7 @@ $(document).ready(function() {
     });
 
     //When there is success on joining/creating/leaving
-    socket.on("success", function(type, username = null) {
+    socket.on("success", function(type) {
     	$("#error").text("");
     	switch(type) {
 		    case "createRoom":
@@ -71,7 +75,7 @@ $(document).ready(function() {
 		        break;
 		    case "leaveRoom":
 		    	toggleScreen("menu");
-		    	$("#menu-container h2").text("Online Card Game");
+		    	$("#menu-container #subtitle").text("Online Card Game");
 		    	break;
 		    case "startRoom":
 		    	toggleScreen("game");
@@ -98,7 +102,7 @@ $(document).ready(function() {
    	});	
 
    	socket.on("setupRoom", function(roomID, adminID) {
-    	$("#menu-container h2").text("Online Card Game - " + roomID);
+    	$("#menu-container #subtitle").text("Online Card Game - " + roomID);
 
        	if (socket.id == adminID) {
 			$("#button-start").show();    	
@@ -106,4 +110,14 @@ $(document).ready(function() {
     		$("#button-start").hide()
     	}
     });
+
+    socket.on("setupUserInfo", function(user) {
+    	//Empty list
+    	$("#info-list").empty();
+
+    	for (var key in user.player) {
+    		console.log(key);
+    		$("#info-list").append('<li class="info-item"><p class="key">' + key + ': </p><p class="value">' + user.player[key] + '</p></li>');
+		}
+    });	
 });
