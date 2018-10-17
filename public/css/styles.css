@@ -1,7 +1,8 @@
 :root {
-    --title-color: #000;
-    --accent-lighter-color: #46bf33;
-    --secondary-color: #fff;
+    --primary-color: #333;
+    --secondary-color: #c6c6c6;
+    --accent-color: #F50001;
+    --background-color: #fff;
 }
 
 html, body, div, span, applet, object, iframe,
@@ -82,23 +83,6 @@ a {
 	clear: both;
 }
 
-.icon {
-	font-size: 14px;
-	padding-right: 6px;
-	vertical-align: middle;
-}
-
-#top-line {
-	height: 6px;
-	width: 100%;
-	background: #1e5799; /* Old browsers */
-	background: -moz-linear-gradient(left, var(--accent-color) 0%, var(--accent-lighter-color) 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(left, var(--accent-color) 0%, var(--accent-lighter-color) 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to right, var(--accent-color) 0%, var(--accent-lighter-color) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	position: absolute;
-	top: 0;
-}
-
 #container {
 	width: initial;
     max-width: initial;
@@ -131,39 +115,42 @@ a {
 	width: 350px;
 }
 
+#menu-container img {
+	width: 100%;
+}
+
 #menu-container h1 {
-	font-size: 110px;
-	height: 120px;
+	font-size: 112px;
 	font-family: "Roboto", sans-serif;
-	color: var(--title-color);
+	color: var(--primary-color);
 	text-align: center;
 	font-weight: 400;
 }
 #menu-container h2 {
 	font-size: 26px;
 	font-family: "Raleway", sans-serif;
-	color: var(--title-color);
+	color: var(--primary-color);
 	text-align: center;
 	font-weight: 400;
 }
 #menu-container h3 {
 	font-size: 16px;
 	font-family: "Raleway", sans-serif;
-	color: var(--title-color);
+	color: var(--primary-color-color);
 	font-weight: 400;
+	padding-top: 8px;
 	text-align: center;
-	padding-top: 10px;
 	opacity: 0.8;
 }
 #menu-container h3 a {
-	color: var(--title-color);
+	color: var(--primary-color);
 	text-decoration: underline;
 }
 
 #menu-container #error {
 	height: 16px;
 	font-family: "Raleway", sans-serif;
-	color: #e84118;
+	color: var(--accent-color);
 	padding-top: 15px;
 	opacity: 0.9;
 	font-weight: 400;
@@ -184,7 +171,7 @@ a {
 	display: block;
 	margin-top: 10px;
 	background: none;
-	border: 1px solid var(--title-color);
+	border: 1px solid var(--secondary-color);
 	opacity: 0.6;
 	color: var(--title-color);
 	font-family: "Roboto", sans-serif;
@@ -211,10 +198,10 @@ a {
 	background: none;
 	display: inline-block;
 	float: left;
-	opacity: 0.6;
+	opacity: 0.9;
 	cursor: pointer;
-	color: var(--title-color);
-	border: var(--title-color) solid 1px;
+	color: var(--primary-color);
+	border: var(--secondary-color) solid 1px;
 	text-transform: uppercase;
 }
 .button-container .button:hover {
@@ -236,11 +223,11 @@ a {
 	font-size: 18px;
 	display: block;
 	width: 100%;
-	color: var(--secondary-color);
+	color: var(--primary-color);
 	font-family: "Roboto", sans-serif;
 	font-weight: 400;
 	text-align: center;
-	opacity: 0.6;
+	opacity: 0.8;
 	padding-bottom: 8px;
 }
 
@@ -252,12 +239,12 @@ a {
 	width: 50%;
 	display: inline-block;
 	float: left;
-	color: var(--secondary-color);
+	color: var(--primary-color);
 	font-family: "Roboto", sans-serif;
 	font-weight: 400;
 	text-align: center;
 	font-size: 16px;
-	opacity: 0.6;
+	opacity: 0.8;
 	cursor: pointer;
 
 	padding-bottom: 8px;
@@ -265,4 +252,10 @@ a {
 
 #room #players .playerItem:hover {
 	opacity: 1;
+}
+
+#room #players .icon {
+	font-size: 14px;
+	padding-right: 6px;
+	vertical-align: middle;
 }
