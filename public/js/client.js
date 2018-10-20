@@ -8,6 +8,12 @@ function toggleScreen(screenName) {
 		$(this).hide();
 	});
 	$("#" + screenName).show();
+
+	if (screenName == "game") {
+		$("#menu-container").hide();
+	} else {
+		$("#menu-container").show();
+	}
 }
 
 $(document).ready(function() {
@@ -44,8 +50,17 @@ $(document).ready(function() {
 		event.preventDefault();
 	});
 
-	$("#info-button").click(function(event) {
-		$("#info-list").slideToggle();
+	$("#info-title").click(function(event) {
+		$("#info-list").slideToggle(150);
+		$("#info-title .drop-down").toggleClass("opp");
+	});
+	$("#player-title").click(function(event) {
+		$("#game-players").slideToggle(150);
+		$("#player-title .drop-down").toggleClass("opp");
+	});
+	$("#action-title").click(function(event) {
+		$("#action-list").slideToggle(150);
+		$("#action-title .drop-down").toggleClass("opp");
 	});
 
 /*
@@ -83,9 +98,9 @@ $(document).ready(function() {
 		}
    	});
 
-   	socket.on("connectedPlayers", function(players, adminID) {
+   	socket.on("lobbyPlayers", function(players, adminID) {
    		//Empty list
-   		$("#players").empty();
+   		$("#lobby-players").empty();
 
    		//Player list
     	for (var i = 0; i < players.length; i++) {
@@ -93,9 +108,9 @@ $(document).ready(function() {
     		if (players[i].id == adminID) {
     			inner = "<i class='fas fa-crown icon'></i>" + inner;
     		}
-    		$("#players").append("<li class='playerItem'>" + inner + "</li>");
+    		$("#lobby-players").append("<li class='playerItem'>" + inner + "</li>");
     	}
-    	$("#players").append('<div class="clearfix"></div>')
+    	$("#lobby-players").append('<div class="clearfix"></div>');
 
     	//Player count
     	$("#player-count").text("Players: " + players.length);
@@ -115,9 +130,33 @@ $(document).ready(function() {
     	//Empty list
     	$("#info-list").empty();
 
-    	for (var key in user.player) {
-    		console.log(key);
-    		$("#info-list").append('<li class="info-item"><p class="key">' + key + ': </p><p class="value">' + user.player[key] + '</p></li>');
+    	var display = {
+    		username: user.username,
+    		role: user.player.role.id,
+    		alive: user.player.alive
+    	}
+
+    	for (var key in display) {
+    		$("#info-list").append('<li class="info-item"><p class="key">' + key + ': </p><p class="value">' + display[key] + '</p></li>');
 		}
     });	
+
+    socket.on("gamePlayers", function(players) {
+    	//Empty list
+    	$("#game-players").empty();
+
+    	console.log(players);
+
+    	for (var i = 0; i < players.length; i++) {	
+    		var inner = players[i].username;
+    		var innerClass = "playerItem";
+
+    		if (players[i].alive == false) {
+    			innerClass = innerClass + " dead";
+    		}
+
+    		$("#game-players").append("<li class='" + innerClass + "'>" + inner + "</li>");
+    	}
+    	$("#game-players").append('<div class="clearfix"></div>');
+    });
 });

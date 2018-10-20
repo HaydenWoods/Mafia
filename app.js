@@ -2,6 +2,26 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function getSum(total, num) {
+    return total + num;
+}
+
+function shuffle(array) {
+	var currentIndex = array.length, temporaryValue, randomIndex;
+	// While there remain elements to shuffle...
+	while (0 !== currentIndex) {
+		// Pick a remaining element...
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex -= 1;
+		// And swap it with the current element.
+		temporaryValue = array[currentIndex];
+		array[currentIndex] = array[randomIndex];
+		array[randomIndex] = temporaryValue;
+	}
+
+	return array;
+}
+
 /*
   _    _  _____ ______ _____   
  | |  | |/ ____|  ____|  __ \  
@@ -22,14 +42,58 @@ class User {
 }
 
 class Player {
-	constructor() {
-		this.username = null;
-		this.role = null;
-		this.alive = null;
+	constructor(role) {
+		this.role = role;
+		this.alive = true;
 	}
 }
 
 
+/*
+  _____   ____  _      ______  _____ 
+ |  __ \ / __ \| |    |  ____|/ ____|
+ | |__) | |  | | |    | |__  | (___  
+ |  _  /| |  | | |    |  __|  \___ \ 
+ | | \ \| |__| | |____| |____ ____) |
+ |_|  \_\\____/|______|______|_____/ 
+                                     
+*/
+
+class Civilian {
+	constructor() {
+		this.id = "Civilian";
+	}
+}
+
+class Mafia {
+	constructor() {
+		this.id = "Mafia";
+		this.percentage = 0.3;
+		this.min = 1;
+	}
+}
+
+class Doctor {
+	constructor() {
+		this.id = "Doctor";
+		this.amount = 1;
+	}
+}
+
+class Detective {
+	constructor() {
+		this.id = "Detective";
+		this.amount = 1;
+	}
+}
+
+var allRoles = [
+	new Civilian(),
+	new Mafia(),
+	new Doctor(),
+	new Detective(),
+];
+	
 /*
   _____   ____   ____  __  __ 
  |  __ \ / __ \ / __ \|  \/  |
@@ -47,6 +111,20 @@ class Room {
 		this.users = [];
 		this.admin = null;
 		this.isPlaying = null;
+		this.game = null;
+	}
+}
+
+class Game {
+	constructor() {
+		this.rounds = [];
+		this.roles = [];
+	}
+}
+
+class Round {
+	constructor() {
+
 	}
 }
 
@@ -115,8 +193,6 @@ io.sockets.on("connection", function(socket) {
 
 	socket.on("createRoom", function(username, roomID) {
 		if (room == null) {
-			console.log("create room");
-
 			var err = null;
 
 			if (username.length <= 0) {
@@ -150,7 +226,7 @@ io.sockets.on("connection", function(socket) {
 
 				socket.emit("success", "createRoom", username);
 				io.to(room.id).emit("setupRoom", room.id, room.admin.id);
-				io.to(room.id).emit("connectedPlayers", room.users, room.admin.id);
+				io.to(room.id).emit("lobbyPlayers", room.users, room.admin.id);
 			} else {
 				socket.emit("err", err);
 			}
@@ -170,8 +246,6 @@ io.sockets.on("connection", function(socket) {
 
 	socket.on("joinRoom", function(username, roomID) {
 		if (room == null) {
-			console.log("join room");
-
 			var err = null;
 
 			if (username.length <= 0) {
@@ -209,7 +283,7 @@ io.sockets.on("connection", function(socket) {
 
 				socket.emit("success", "joinRoom");
 				io.to(room.id).emit("setupRoom", room.id, room.admin.id);
-				io.to(room.id).emit("connectedPlayers", room.users, room.admin.id);
+				io.to(room.id).emit("lobbyPlayers", room.users, room.admin.id);
 
 			} else {
 				socket.emit("err", err);
@@ -230,8 +304,6 @@ io.sockets.on("connection", function(socket) {
 
 	function leaveRoom(user, room) {
 		if (room != null) {
-			console.log("leave room");
-
 			socket.leave(room.id);
 			user.player = null;
 
@@ -253,10 +325,8 @@ io.sockets.on("connection", function(socket) {
 
 			//If the room still has users
 			if (room.users.length > 0) {
-				console.log("sending");
-				console.log(room);
 				io.to(room.id).emit("setupRoom", room.id, room.admin.id);
-				io.to(room.id).emit("connectedPlayers", room.users, room.admin.id);
+				io.to(room.id).emit("lobbyPlayers", room.users, room.admin.id);
 			}
 
 			return null;
@@ -279,32 +349,52 @@ io.sockets.on("connection", function(socket) {
 
 	socket.on("startRoom", function() {
 		if (room != null) {
-			console.log("start room");
-
 			var err = null;
 
 			if (user.id != room.admin.id) {
 				err = "You are not the admin!";
 			}
-			// if (room.users.length < 4) {
-			// 	err = "Four people minimum to start!";
-			// }
+			if (room.users.length < 4) {
+				err = "Four people minimum to start!";
+			}
 
 			if (err == null) {
+				var tempUsers = [];
+
 				room.isPlaying = true;
+				room.game = new Game();
 
+				//Assign the roles into a list
+				room.game.roles.push(new Doctor());
+				room.game.roles.push(new Detective());
+				var mafiaAmount = Math.round(room.users.length * allRoles.find(obj => obj.id == "Mafia").percentage);
+				for (var i = 0; i < mafiaAmount; i++) {
+					room.game.roles.push(new Mafia());
+				}
+				var remainder = room.users.length - room.game.roles.length;
+				for (var i = 0; i < remainder; i++) {
+					room.game.roles.push(new Civilian());
+				}
+				room.game.roles = shuffle(room.game.roles);
+
+				//Display player info on their screens
 				for (var i = 0; i < room.users.length; i++) {
-					var player = new Player() 
+					room.users[i].player = new Player();
+					room.users[i].player.role = room.game.roles.pop();
+					room.users[i].player.alive = true;
 
-					player.username = room.users[i].username;
-					player.role = "Gay";
-					player.alive = true;
+					io.to(room.users[i].id).emit("setupUserInfo", room.users[i]);
 
-					room.users[i].player = player;
+					var tempUser = {
+						username: room.users[i].username,
+						alive: room.users[i].player.alive,
+					}
+
+					tempUsers.push(tempUser);
 				}
 
-				socket.emit("success", "startRoom");
-				socket.emit("setupUserInfo", user);
+				io.to(room.id).emit("gamePlayers", tempUsers);
+				io.to(room.id).emit("success", "startRoom");
 			} else {	
 				socket.emit("err", err);
 			}

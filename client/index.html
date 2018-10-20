@@ -20,47 +20,56 @@
 </head>
 <body>
 	<div id="container" class="noselect">
-		<div id="menu-container">
-			<!-- Main title area and image -->
-			<img src="./public/images/playingcardsymbols.png">
-			<h1>MAFIA</h1>
-			<h2 id="subtitle">Online Card Game</h2>
-			<h3>Created By <a href="https://hayden.sh" tabindex="-1">Hayden Woods</a> © 2018</h3>
-			<h4 id="error"></h4>
-			
-			<!-- Screens, only one at a time -->
-			<div id="menu" class="screen">
-				<form id="form-menu">
-					<input type="text" id="input-username" class="input" autocomplete="off" placeholder="Username..." spellcheck="false">
-					<input type="text" id="input-room" class="input" autocomplete="off" placeholder="Room..." spellcheck="false">
-					<div class="button-container">
-						<button id="button-create" class="button">Create</button>
-						<button id="button-join" class="button">Join</button>
-					</div>
-					<div class="clearfix"></div>
-				</form>
+		<div class="flex-child">
+			<div id="title-container">
+				<img src="./public/images/playingcardsymbols.png" class="logo">
+				<h1>MAFIA</h1>
+				<h2 id="subtitle">Online Card Game</h2>
+				<h3>Created By <a href="https://hayden.sh" tabindex="-1">Hayden Woods</a> © 2018</h3>
+				<h4 id="error"></h4>
 			</div>
+		</div>
 
-			<div id="room" class="screen">
-				<p id="player-count"></p>
-				<ul id="players">
-					<div class="clearfix"></div>
-				</ul>	
-				<form id="form-room">
-					<div class="button-container">
-						<button id="button-leave" class="button">Leave</button>
-						<button id="button-start" class="button">Start</button>
+		<div class="flex-child">
+			<div id="menu-container">
+				<!-- Screens, only one at a time -->
+				<div id="menu" class="screen">
+					<form id="form-menu">
+						<input type="text" id="input-username" class="input" autocomplete="off" placeholder="Username..." spellcheck="false">
+						<input type="text" id="input-room" class="input" autocomplete="off" placeholder="Room..." spellcheck="false">
+						<div class="button-container">
+							<button id="button-create" class="button">Create</button>
+							<button id="button-join" class="button">Join</button>
+						</div>
 						<div class="clearfix"></div>
-					</div>
-				</form>
-			</div>
+					</form>
+				</div>
 
-			<div id="game" class="screen">
-				<h2 id="info-button">Your Information</h2>
-				<ul id="info-list">
-					
-				</ul>
+				<div id="room" class="screen">
+					<p id="player-count"></p>
+					<ul id="lobby-players">
+						<div class="clearfix"></div>
+					</ul>	
+					<form id="form-room">
+						<div class="button-container">
+							<button id="button-leave" class="button">Leave</button>
+							<button id="button-start" class="button">Start</button>
+							<div class="clearfix"></div>
+						</div>
+					</form>
+				</div>
 			</div>
+		</div>
+
+		<div id="game" class="screen">
+			<h2 id="info-title">Your Information<img class="drop-down opp" src="./public/images/drop-down-arrow.png"></h2>
+			<ul id="info-list"></ul>
+
+			<h2 id="action-title">Your Actions<img class="drop-down opp" src="./public/images/drop-down-arrow.png"></h2>
+			<ul id="action-list"></ul>
+
+			<h2 id="player-title">Players<img class="drop-down opp" src="./public/images/drop-down-arrow.png"></h2>
+			<ul id="game-players"></ul>
 		</div>
 	</div>
 	<script src="./public/js/client.js"></script>

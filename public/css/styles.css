@@ -104,36 +104,44 @@ a {
     -moz-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    min-height: 100vh;
+    padding-top: 75px;
+    flex-wrap: wrap;
 }
 
 #game, #room {
 	display: none;
 }
 
-#menu-container {
+.flex-child {
+	flex-basis: 100%;
+}
+
+#title-container {
 	width: 350px;
+	margin: 0 auto;
 }
 
-#menu-container img {
-	width: 100%;
+#title-container .logo {
+	width: 350px;
+	display: block;
+	margin: 0 auto;
 }
 
-#menu-container h1 {
+#title-container h1 {
 	font-size: 112px;
 	font-family: "Roboto", sans-serif;
 	color: var(--primary-color);
 	text-align: center;
 	font-weight: 400;
 }
-#menu-container h2 {
+#title-container h2 {
 	font-size: 26px;
 	font-family: "Raleway", sans-serif;
 	color: var(--primary-color);
 	text-align: center;
 	font-weight: 400;
 }
-#menu-container h3 {
+#title-container h3 {
 	font-size: 16px;
 	font-family: "Raleway", sans-serif;
 	color: var(--primary-color-color);
@@ -142,12 +150,12 @@ a {
 	text-align: center;
 	opacity: 0.8;
 }
-#menu-container h3 a {
+#title-container h3 a {
 	color: var(--primary-color);
 	text-decoration: underline;
 }
 
-#menu-container #error {
+#title-container #error {
 	height: 16px;
 	font-family: "Raleway", sans-serif;
 	color: var(--accent-color);
@@ -156,6 +164,11 @@ a {
 	opacity: 0.9;
 	font-weight: 400;
 	text-align: center;
+}
+
+#menu-container {
+	width: 350px;
+	margin: 0 auto;
 }
 
 #form-menu {
@@ -181,9 +194,6 @@ a {
 }
 #form-menu .input:focus {
 	opacity: 0.9;
-}
-#form-menu .input::selection {
-	background: var(--accent-color);
 }
 
 .button-container {
@@ -231,11 +241,11 @@ a {
 	padding-bottom: 8px;
 }
 
-#room #players {
+#room #lobby-players {
 	width: 100%;
 }
 
-#room #players .playerItem {
+#room #lobby-players .playerItem {
 	width: 50%;
 	display: inline-block;
 	float: left;
@@ -250,19 +260,43 @@ a {
 	padding-bottom: 8px;
 }
 
-#room #players .playerItem:hover {
+#room #lobby-players .playerItem:hover {
 	opacity: 1;
 }
 
-#room #players .icon {
+#room #lobby-players .icon {
 	font-size: 14px;
 	padding-right: 6px;
 	vertical-align: middle;
 }
 
-#game #info-button {
+#game {
+	height: 50vh;
+	width: 500px;
+}
+
+#game .drop-down {
+	display: inline;
+	height: 14px;
+	padding-left: 10px;
+	padding-top: 5px;
+}
+
+#game .opp {
+	transform: scaleY(-1) translateY(-3px);
+}
+
+#game h2 {
+	font-size: 26px;
+	font-family: "Raleway", sans-serif;
+	color: var(--primary-color);
+	text-align: center;
+	font-weight: 400;
+}
+
+#game #info-title {
 	cursor: pointer;
-	padding-bottom: 15px;
+	padding-bottom: 10px;
 }
 
 #game #info-list {
@@ -289,6 +323,44 @@ a {
 	display: inline;
 }
 
+#game #player-title {
+	cursor: pointer;
+	padding-top: 15px;
+	padding-bottom: 10px;
+}
+
+#game #game-players {
+	width: 100%;
+}
+
+#game #game-players .playerItem {
+	width: 50%;
+	display: inline-block;
+	float: left;
+	color: var(--primary-color);
+	font-family: "Roboto", sans-serif;
+	font-weight: 400;
+	text-align: center;
+	font-size: 16px;
+	cursor: pointer;
+
+	padding-bottom: 10px;
+}
+
+#game #game-players .dead {
+	text-decoration: line-through;
+	opacity: 0.8
+}
+
+#game #action-title {
+	cursor: pointer;
+	padding-top: 15px;
+	padding-bottom: 10px;
+}
+
+#game #action-list {
+
+}
 
 
 
