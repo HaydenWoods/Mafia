@@ -297,6 +297,7 @@ a {
 #game #info-title {
 	cursor: pointer;
 	padding-bottom: 10px;
+	padding-top: 15px;
 }
 
 #game #info-list {
@@ -360,6 +361,35 @@ a {
 
 #game #action-list {
 
+}
+
+#game #game-title {
+	padding-top: 15px;
+	padding-bottom: 10px;
+}
+
+#game #game-list {
+	width: 100%;
+}
+
+#game #game-list .game-item {
+	text-align: center;
+	padding-bottom: 5px;
+}
+
+#game #game-list .game-item .key {
+	font-size: 20px;
+	font-family: "Roboto", sans-serif;
+	font-weight: 300;
+	text-transform: uppercase;
+	display: inline;
+}
+
+#game #game-list .game-item .value {
+	font-size: 20px;
+	font-family: "Roboto", sans-serif;
+	font-weight: 400;
+	display: inline;
 }
 
 

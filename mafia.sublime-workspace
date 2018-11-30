@@ -4,12 +4,60 @@
 		"selected_items":
 		[
 			[
-				"pr",
-				"primary-color"
-			],
-			[
 				"user",
 				"users"
+			],
+			[
+				"get",
+				"getSum"
+			],
+			[
+				"flex",
+				"flex-basis\tproperty"
+			],
+			[
+				"rot",
+				"rotateZ()\ttransform"
+			],
+			[
+				"text",
+				"text-decoration-style\tproperty"
+			],
+			[
+				"inn",
+				"innerClass"
+			],
+			[
+				"player",
+				"playerItem"
+			],
+			[
+				"temp",
+				"tempUsers"
+			],
+			[
+				"in",
+				"inline\tdisplay"
+			],
+			[
+				"trans",
+				"transform\tproperty"
+			],
+			[
+				"is",
+				"isPlaying"
+			],
+			[
+				"menu",
+				"menu-container"
+			],
+			[
+				"room",
+				"roomID"
+			],
+			[
+				"pr",
+				"primary-color"
 			],
 			[
 				"ac",
@@ -24,16 +72,8 @@
 				"inline-block\tdisplay"
 			],
 			[
-				"flex",
-				"flex-wrap\tproperty"
-			],
-			[
 				"font-s",
 				"font-style\tproperty"
-			],
-			[
-				"in",
-				"inline-block\tdisplay"
 			],
 			[
 				"back",
@@ -59,7 +99,8 @@
 			"file": "app.js",
 			"settings":
 			{
-				"buffer_size": 2703,
+				"buffer_size": 9016,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
@@ -67,7 +108,7 @@
 			"file": "public/js/client.js",
 			"settings":
 			{
-				"buffer_size": 2376,
+				"buffer_size": 4234,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -76,7 +117,7 @@
 			"file": "client/index.html",
 			"settings":
 			{
-				"buffer_size": 2090,
+				"buffer_size": 2760,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -85,7 +126,7 @@
 			"file": "public/css/styles.css",
 			"settings":
 			{
-				"buffer_size": 4873,
+				"buffer_size": 6421,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -136,10 +177,15 @@
 	"expanded_folders":
 	[
 		"/Users/haydenwoods/Documents/Development/NodeJS/Mafia",
-		"/Users/haydenwoods/Documents/Development/NodeJS/Mafia/public"
+		"/Users/haydenwoods/Documents/Development/NodeJS/Mafia/client",
+		"/Users/haydenwoods/Documents/Development/NodeJS/Mafia/public",
+		"/Users/haydenwoods/Documents/Development/NodeJS/Mafia/public/css",
+		"/Users/haydenwoods/Documents/Development/NodeJS/Mafia/public/images",
+		"/Users/haydenwoods/Documents/Development/NodeJS/Mafia/public/js"
 	],
 	"file_history":
 	[
+		"/Users/haydenwoods/Documents/Development/NodeJS/Mafia/public/js/client.js",
 		"/Users/haydenwoods/Documents/Development/NodeJS/CTF/app.js",
 		"/Users/haydenwoods/Documents/Development/NodeJS/CTF/ctf.sublime-project",
 		"/Users/haydenwoods/Documents/Development/Python/known.txt",
@@ -147,7 +193,7 @@
 	],
 	"find":
 	{
-		"height": 27.0
+		"height": 40.0
 	},
 	"find_in_files":
 	{
@@ -161,6 +207,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"--accent-color",
+			"room.game.roles[i]",
+			"id",
+			"#players",
+			"connectedPlayers",
+			".screen",
+			"sending",
+			"room.game",
 			"});\n"
 		],
 		"highlight": true,
@@ -169,6 +223,9 @@
 		"regex": false,
 		"replace_history":
 		[
+			"role",
+			"#lobby-players",
+			"lobbyPlayers"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -179,7 +236,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -188,15 +245,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2703,
+						"buffer_size": 9016,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1264,
-								1264
+								8450,
+								8450
 							]
 						],
 						"settings":
@@ -205,10 +262,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1037.0,
+						"translation.y": 6329.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -217,15 +274,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2376,
+						"buffer_size": 4234,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2363,
-								2363
+								351,
+								351
 							]
 						],
 						"settings":
@@ -233,10 +290,10 @@
 							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 796.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -245,15 +302,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2090,
+						"buffer_size": 2760,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								920,
-								920
+								2680,
+								2680
 							]
 						],
 						"settings":
@@ -266,7 +323,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -275,15 +332,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4873,
+						"buffer_size": 6421,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2520,
-								2520
+								2717,
+								2717
 							]
 						],
 						"settings":
@@ -293,10 +350,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2484.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -341,7 +398,7 @@
 	"project": "mafia.sublime-project",
 	"replace":
 	{
-		"height": 50.0
+		"height": 71.0
 	},
 	"save_all_on_build": true,
 	"select_file":

@@ -117,13 +117,24 @@ $(document).ready(function() {
    	});	
 
    	socket.on("setupRoom", function(roomID, adminID) {
-    	$("#menu-container #subtitle").text("Online Card Game - " + roomID);
-
        	if (socket.id == adminID) {
 			$("#button-start").show();    	
     	} else {
     		$("#button-start").hide()
     	}
+    });
+
+    socket.on("setupGameInfo", function(room) {
+    	$("#game-list").empty();
+
+    	var display = {
+    		name: room.id,
+    		time: room.game.time,
+    	};
+
+    	for (var key in display) {
+    		$("#game-list").append('<li class="game-item"><p class="key">' + key + ': </p><p class="value">' + display[key] + '</p></li>');
+		}
     });
 
     socket.on("setupUserInfo", function(user) {

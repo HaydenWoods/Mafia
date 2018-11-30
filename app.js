@@ -119,6 +119,7 @@ class Game {
 	constructor() {
 		this.rounds = [];
 		this.roles = [];
+		this.time = null;
 	}
 }
 
@@ -363,6 +364,8 @@ io.sockets.on("connection", function(socket) {
 
 				room.isPlaying = true;
 				room.game = new Game();
+				
+				room.game.time = "Day";
 
 				//Assign the roles into a list
 				room.game.roles.push(new Doctor());
@@ -394,6 +397,7 @@ io.sockets.on("connection", function(socket) {
 				}
 
 				io.to(room.id).emit("gamePlayers", tempUsers);
+				io.to(room.id).emit("setupGameInfo", room);
 				io.to(room.id).emit("success", "startRoom");
 			} else {	
 				socket.emit("err", err);
